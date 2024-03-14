@@ -12,7 +12,7 @@ from langchain.agents import initialize_agent
 from langchain.agents import load_tools
 from langchain.agents import AgentType
 from langchain_community.llms import OpenAI as LangchainOpenAI
-
+from waitress import serve
 load_dotenv(override=True)
 app = Flask("__name__")
 CORS(app)
@@ -78,4 +78,5 @@ def answer_question():
     return Response(answer["output"])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=False)
+    serve(app, host='localhost', port=5000)
